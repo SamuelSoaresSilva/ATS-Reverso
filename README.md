@@ -4,6 +4,7 @@ O **ATS-Reverso** é uma solução inteligente baseada em Inteligência Artifici
 
 O sistema analisa o currículo original (em PDF, Word ou Markdown), extrai suas informações essenciais, cruza com as necessidades de uma vaga e com os valores da empresa de destino, e reconstrói o documento de forma otimizada — aplicando metodologias consolidadas como o **método STAR** e mantendo a veracidade das informações.
 
+> [tutorial](https://www.youtube.com/watch?v=b2dY0TC2L9w)
 ---
 
 ## 🚀 Funcionalidades Principais
