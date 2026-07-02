@@ -1,0 +1,6 @@
+.env
+node_modules/
+output/
+public/uploads/
+./test_results.json
+ai_temp/*

@@ -1,0 +1,35 @@
+{
+  "name": "curriculo-por-vaga",
+  "version": "1.0.0",
+  "description": "Gerador Inteligente de Currículos sob demanda utilizando a API do Gemini",
+  "main": "dist/app.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/app.ts",
+    "server": "ts-node src/server.ts",
+    "test": "ts-node src/test_preprocessor.ts",
+    "dev": "nodemon --watch src -e ts --exec ts-node src/app.ts",
+    "dev:server": "nodemon --watch src -e ts --exec ts-node src/server.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^2.10.0",
+    "docxtemplater": "^3.49.1",
+    "pizzip": "^3.1.7",
+    "zod": "^3.23.8",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "pdf-parse": "^1.1.1",
+    "mammoth": "^1.8.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3",
+    "@types/node": "^20.14.9",
+    "@types/express": "^4.17.21",
+    "@types/multer": "^1.4.11",
+    "ts-node": "^10.9.2",
+    "nodemon": "^3.1.4",
+    "rimraf": "^5.0.7",
+    "@types/pdf-parse": "^1.1.4"
+  }
+}

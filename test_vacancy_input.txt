@@ -1,0 +1,16 @@
+Vaga: Engenheiro Backend Node.js Sênior / Pleno
+Empresa: CloudTech Corp
+Local: Remoto
+
+Requisitos:
+- Sólida experiência em desenvolvimento Backend com Node.js e TypeScript.
+- Conhecimento em frameworks como Express, Fastify ou NestJS.
+- Experiência prática na AWS (Lambda, ECS, RDS).
+- Habilidade com bancos de dados relacionais e não-relacionais (PostgreSQL, Redis).
+- Práticas de qualidade: testes automatizados (Jest/Mocha), CI/CD.
+- Perfil colaborativo, com boa comunicação e foco em entrega de valor.
+
+Diferenciais:
+- Experiência em arquitetura de microsserviços.
+- Conhecimento em Docker e conteinerização.
+- Projetos pessoais ou contribuições open-source em TypeScript.

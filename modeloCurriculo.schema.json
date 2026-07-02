@@ -1,0 +1,43 @@
+{
+    "nome": "string",
+    "cargoDesejado": "string",
+    "localizacao": {
+        "cidade": "string",
+        "estado": "string"
+    },
+    "contato": {
+        "email": "string",
+        "telefone": "string",
+        "linkedin": "string",
+        "github": "string"
+    },
+    "resumo": "string",
+    "experiencia": [
+        {
+            "cargo": "string",
+            "empresa": "string",
+            "periodo": "string",
+            "descricao": [
+                "string"
+            ]
+        }
+    ],
+    "formacao": [
+        {
+            "curso": "string",
+            "instituicao": "string",
+            "periodo": "string"
+        }
+    ],
+    "competencias": {
+        "tecnicas": [
+            "string"
+        ],
+        "softwares": [
+            "string"
+        ],
+        "idiomas": [
+            "string"
+        ]
+    }
+}

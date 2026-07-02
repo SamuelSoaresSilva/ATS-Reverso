@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ModeloCurriculo",
+  "type": "object",
+  "properties": {
+    "dados_contato": {
+      "type": "object",
+      "properties": {
+        "nome_completo": { "type": "string" },
+        "cargo_desejado": { "type": "string" },
+        "cidade": { "type": "string" },
+        "estado": { "type": "string" },
+        "telefone": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "linkedin_url": { "type": "string", "format": "uri" },
+        "github_portfolio_url": { "type": "string", "format": "uri" }
+      },
+      "required": ["nome_completo", "cidade", "estado", "telefone", "email"]
+    },
+    "resumo_profissional": { "type": "string" },
+    "competencias": {
+      "type": "object",
+      "properties": {
+        "hard_skills": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "sistemas_ferramentas": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "soft_skills_idiomas": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["hard_skills", "sistemas_ferramentas", "soft_skills_idiomas"]
+    },
+    "experiencias_profissionais": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "cargo": { "type": "string" },
+          "empresa": { "type": "string" },
+          "data_inicio": { "type": "string" },
+          "data_fim": { "type": "string" },
+          "conquistas_e_atividades": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["cargo", "empresa", "data_inicio", "data_fim", "conquistas_e_atividades"]
+      }
+    },
+    "formacao_academica": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "curso": { "type": "string" },
+          "instituicao": { "type": "string" },
+          "ano_conclusao": { "type": "string" }
+        },
+        "required": ["curso", "instituicao", "ano_conclusao"]
+      }
+    },
+    "certificacoes_cursos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "nome_item": { "type": "string" },
+          "instituicao_emissora": { "type": "string" },
+          "ano": { "type": "string" }
+        },
+        "required": ["nome_item"]
+      }
+    }
+  },
+  "required": [
+    "dados_contato",
+    "resumo_profissional",
+    "competencias",
+    "experiencias_profissionais",
+    "formacao_academica",
+    "certificacoes_cursos"
+  ]
+}

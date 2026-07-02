@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Tailor - Gerador de Currículos Otimizados</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="glass-bg"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fa-solid fa-wand-magic-sparkles magic-icon"></i>
+                <h1>AI Resume Tailor</h1>
+            </div>
+            <p class="subtitle">Adapte e otimize seu currículo para qualquer vaga instantaneamente com Inteligência Artificial</p>
+        </header>
+
+        <main class="app-layout">
+            <!-- Painel de Inputs -->
+            <section class="panel input-panel">
+                <h2><i class="fa-solid fa-sliders icon-title"></i> Painel de Controle</h2>
+                
+                <div class="tabs-container">
+                    <button type="button" class="tab-btn active" id="tab-optimize"><i class="fa-solid fa-wand-magic-sparkles"></i> Otimização IA</button>
+                    <button type="button" class="tab-btn" id="tab-test"><i class="fa-solid fa-vial"></i> Testar Layout</button>
+                </div>
+
+                <!-- Form de Otimização (Original) -->
+                <form id="generator-form">
+                    
+                    <!-- Drag and Drop Currículo -->
+                    <div class="form-group">
+                        <label>Currículo Base (JSON, PDF, DOCX, TXT)</label>
+                        <div id="drop-zone" class="drop-zone">
+                            <i class="fa-solid fa-file-arrow-up drop-icon"></i>
+                            <span class="drop-text">Arraste seu currículo aqui ou</span>
+                            <button type="button" class="btn-browse" onclick="document.getElementById('file-input').click()">Escolher Arquivo</button>
+                            <input type="file" id="file-input" name="resume" accept=".json,.pdf,.docx,.txt,.md" style="display: none;">
+                            <div id="file-info" class="file-info" style="display: none;">
+                                <i class="fa-solid fa-file-lines file-icon"></i>
+                                <span id="file-name">NomeDoArquivo.pdf</span>
+                                <button type="button" id="btn-remove-file" class="btn-remove"><i class="fa-solid fa-times"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nome da Empresa -->
+                    <div class="form-group">
+                        <label for="company">Nome da Empresa</label>
+                        <div class="input-container">
+                            <i class="fa-solid fa-building input-icon"></i>
+                            <input type="text" id="company" name="company" placeholder="Ex: Google, Nubank, Tech Solutions" required>
+                        </div>
+                    </div>
+
+                    <!-- Descrição da Vaga -->
+                    <div class="form-group">
+                        <label for="vacancy-text">Descrição da Vaga</label>
+                        <textarea id="vacancy-text" name="vacancy_text" placeholder="Cole aqui a descrição completa do cargo, requisitos, hard skills e diferenciais descritos na vaga..." required></textarea>
+                    </div>
+
+                    <!-- Botão de Ação -->
+                    <button type="submit" id="btn-submit" class="btn-primary">
+                        <span>Gerar Currículo Otimizado</span>
+                        <i class="fa-solid fa-arrow-right btn-arrow"></i>
+                    </button>
+                </form>
+
+                <!-- Form de Teste de Layout (Novo) -->
+                <form id="test-layout-form" style="display: none;">
+                    <div class="form-group">
+                        <label for="test-company">Nome da Empresa (Nome do Arquivo)</label>
+                        <div class="input-container">
+                            <i class="fa-solid fa-building input-icon"></i>
+                            <input type="text" id="test-company" name="company" placeholder="Ex: Tech Solutions" value="Praxis">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="test-json-editor">Editar JSON de Dados (Visualizar Layout)</label>
+                        <textarea id="test-json-editor" class="test-json-textarea" placeholder="Cole aqui o JSON estruturado..."></textarea>
+                    </div>
+
+                    <!-- Botão de Ação -->
+                    <button type="submit" id="btn-submit-test" class="btn-primary">
+                        <span>Testar Renderização</span>
+                        <i class="fa-solid fa-play btn-arrow"></i>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Painel de Resultados / Loader -->
+            <section class="panel result-panel">
+                <!-- Estado Inicial / Placeholder -->
+                <div id="state-placeholder" class="state-container">
+                    <div class="placeholder-art">
+                        <i class="fa-regular fa-file-pdf document-art"></i>
+                        <i class="fa-solid fa-arrow-right-long arrow-art"></i>
+                        <i class="fa-regular fa-file-word document-art success-color"></i>
+                    </div>
+                    <h3>Pronto para Otimização</h3>
+                    <p>Preencha os dados do formulário ao lado para gerar uma versão personalizada do seu currículo alinhada com as necessidades da vaga.</p>
+                </div>
+
+                <!-- Estado de Carregamento (Loader) -->
+                <div id="state-loading" class="state-container" style="display: none;">
+                    <div class="loader-anim">
+                        <div class="spinner"></div>
+                        <i class="fa-solid fa-brain brain-anim-icon"></i>
+                    </div>
+                    <h3 id="loader-title">Processando Currículo</h3>
+                    <p id="loader-desc">Aguarde enquanto nossa inteligência analisa a vaga e ajusta as suas experiências...</p>
+                    
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                    
+                    <ul class="steps-list">
+                        <li id="step-1" class="step active"><i class="fa-regular fa-circle-dot"></i> Lendo currículo base...</li>
+                        <li id="step-2" class="step"><i class="fa-regular fa-circle"></i> Otimizando conteúdo via Gemini...</li>
+                        <li id="step-3" class="step"><i class="fa-regular fa-circle"></i> Validando schema estruturado...</li>
+                        <li id="step-4" class="step"><i class="fa-regular fa-circle"></i> Renderizando documentos (DOCX/PDF)...</li>
+                    </ul>
+                </div>
+
+                <!-- Estado de Sucesso / Resultados -->
+                <div id="state-success" class="state-container" style="display: none;">
+                    <div class="success-header">
+                        <div class="success-icon-badge">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <div>
+                            <h3>Currículo Otimizado!</h3>
+                            <p>O conteúdo foi perfeitamente adaptado usando o método STAR e estruturado para ATS.</p>
+                        </div>
+                    </div>
+
+                    <!-- Pré-visualização Básica -->
+                    <div class="resume-preview">
+                        <div class="preview-header">
+                            <h4 id="preview-name">Nome do Candidato</h4>
+                            <span id="preview-role" class="role-badge">Desenvolvedor Sênior</span>
+                        </div>
+                        <div class="preview-section">
+                            <h5>Resumo Profissional Otimizado</h5>
+                            <p id="preview-summary">O resumo reescrito pela inteligência artificial aparecerá aqui...</p>
+                        </div>
+                        <div class="preview-section">
+                            <h5>Competências Chave Destacadas</h5>
+                            <div id="preview-skills" class="skills-preview-list">
+                                <!-- Pills de competências -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botões de Ações e Downloads -->
+                    <div class="action-grid">
+                        <a id="download-docx-btn" href="#" class="btn-action docx" download>
+                            <i class="fa-solid fa-file-word"></i>
+                            <div>
+                                <span class="action-title">Baixar DOCX</span>
+                                <span class="action-desc">Template ATS Pronto</span>
+                            </div>
+                        </a>
+                        <a id="download-pdf-btn" href="#" class="btn-action pdf" download>
+                            <i class="fa-solid fa-file-pdf"></i>
+                            <div>
+                                <span class="action-title">Baixar PDF</span>
+                                <span class="action-desc">Alta Fidelidade</span>
+                            </div>
+                        </a>
+                        <button id="copy-json-btn" class="btn-action json">
+                            <i class="fa-solid fa-code"></i>
+                            <div>
+                                <span class="action-title">Copiar JSON</span>
+                                <span class="action-desc">Dados Estruturados</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <button id="btn-reset" class="btn-secondary">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        <span>Otimizar Outro Currículo</span>
+                    </button>
+                </div>
+
+                <!-- Terminal de Logs Avançados -->
+                <div class="console-wrapper">
+                    <button type="button" id="toggle-console-btn" class="btn-console-toggle">
+                        <i class="fa-solid fa-terminal"></i>
+                        <span>Mostrar Logs Avançados</span>
+                        <i class="fa-solid fa-chevron-down toggle-arrow"></i>
+                    </button>
+                    <div id="console-container" class="console-container" style="display: none;">
+                        <div class="console-header">
+                            <span class="console-title"><i class="fa-solid fa-network-wired"></i> logs-stream@gemini-api:~$</span>
+                            <span class="pulse-dot"></span>
+                        </div>
+                        <div id="console-log" class="console-log">
+                            <div class="console-line system"><span class="line-icon">></span> Terminal inicializado. Aguardando envio do formulário...</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

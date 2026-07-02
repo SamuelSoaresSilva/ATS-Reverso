@@ -1,0 +1,65 @@
+{
+  "nome": "João da Silva",
+  "cargoDesejado": "Desenvolvedor Node.js Pleno",
+  "localizacao": {
+    "cidade": "São Paulo",
+    "estado": "SP"
+  },
+  "contato": {
+    "email": "joao.silva@email.com",
+    "telefone": "(11) 98765-4321",
+    "linkedin": "https://linkedin.com/in/joaosilva",
+    "github": "https://github.com/joaosilva"
+  },
+  "resumo": "Desenvolvedor de software com 4 anos de experiência trabalhando com JavaScript, Node.js e bancos de dados SQL/NoSQL. Apaixonado por construir APIs REST de alta performance.",
+  "experiencia": [
+    {
+      "cargo": "Desenvolvedor de Software",
+      "empresa": "Tech Solutions",
+      "periodo": "01/2024 - Presente",
+      "descricao": [
+        "Desenvolvimento de APIs RESTful usando Express e NestJS.",
+        "Integração com serviços em nuvem AWS (S3, Lambda, RDS).",
+        "Otimização de consultas de banco de dados PostgreSQL, reduzindo tempos de resposta em 30%."
+      ]
+    },
+    {
+      "cargo": "Desenvolvedor Backend Júnior",
+      "empresa": "Web Apps Ltda",
+      "periodo": "05/2022 - 12/2023",
+      "descricao": [
+        "Manutenção de sistemas legados em PHP e Node.js.",
+        "Criação de novos endpoints e correção de bugs reportados por usuários.",
+        "Escrita de testes de integração com Jest."
+      ]
+    }
+  ],
+  "formacao": [
+    {
+      "curso": "Tecnologia em Análise e Desenvolvimento de Sistemas",
+      "instituicao": "FIAP",
+      "periodo": "2020 - 2022"
+    }
+  ],
+  "competencias": {
+    "tecnicas": [
+      "JavaScript",
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "REST APIs",
+      "PostgreSQL",
+      "MongoDB"
+    ],
+    "softwares": [
+      "Git",
+      "Docker",
+      "VS Code",
+      "Postman"
+    ],
+    "idiomas": [
+      "Inglês Técnico",
+      "Português Nativo"
+    ]
+  }
+}
